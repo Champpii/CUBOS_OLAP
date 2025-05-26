@@ -7,7 +7,7 @@ class Models:
 
         class DimFecha(db.Model):
             __tablename__ = 'DIM_FECHA'
-            __table_args__ = ({'extend_existing': True})
+            __table_args__ = {'extend_existing': True}
 
             fecha_key = Column(Integer, primary_key=True, autoincrement=True)
             fecha_completa = Column(Date, nullable=False, unique=True)
@@ -38,7 +38,7 @@ class Models:
 
         class DimCategoria(db.Model):
             __tablename__ = 'DIM_CATEGORIA'
-            __table_args__ = ({'extend_existing': True})
+            __table_args__ = {'extend_existing': True}
 
             categoria_key = Column(Integer, primary_key=True, autoincrement=True)
             nombre_categoria = Column(String(100), nullable=False)
@@ -58,7 +58,7 @@ class Models:
 
         class DimMarca(db.Model):
             __tablename__ = 'DIM_MARCA'
-            __table_args__ = ({'extend_existing': True})
+            __table_args__ = {'extend_existing': True}
 
             marca_key = Column(Integer, primary_key=True, autoincrement=True)
             nombre_marca = Column(String(100), nullable=False, unique=True)
@@ -73,7 +73,7 @@ class Models:
 
         class DimModelo(db.Model):
             __tablename__ = 'DIM_MODELO'
-            __table_args__ = ({'extend_existing': True})
+            __table_args__ = {'extend_existing': True}
 
             modelo_key = Column(Integer, primary_key=True, autoincrement=True)
             nombre_modelo = Column(String(100), nullable=False)

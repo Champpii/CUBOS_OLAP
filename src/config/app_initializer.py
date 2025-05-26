@@ -15,13 +15,13 @@ from src.controllers.ventas.ventas_controller import VentasController as VNT_C
 class AppInitializer:
     def __init__(self, app, db, models):
         """
-        Inicializa la aplicación Flask con los controladores y rutas correspondientes.
+        Inicializa rutas y controladores para el microservicio OLAP.
         """
         self.app = app
         self.controllers(db, models)
         self.routes()
 
-    # Métodos para obtener controladores
+    # Métodos públicos para acceder a controladores
     def getCategoriaControllers(self): return self.categoria_controllers
     def getFechaControllers(self): return self.fecha_controllers
     def getMarcaControllers(self): return self.marca_controllers
@@ -29,7 +29,7 @@ class AppInitializer:
     def getProductoControllers(self): return self.producto_controllers
     def getVentasControllers(self): return self.ventas_controllers
 
-    # Método para inicializar rutas
+    # Inicialización de rutas
     def routes(self):
         self.categoria_routes = C_R(self.app, self)
         self.fecha_routes = F_R(self.app, self)
@@ -38,9 +38,9 @@ class AppInitializer:
         self.producto_routes = P_R(self.app, self)
         self.ventas_routes = VNT_R(self.app, self)
 
-    # Método para inicializar controladores
+    # Inicialización de controladores con `db` y `models`
     def controllers(self, db, models):
-        self.categoria_controllers = C_C(db)
+        self.categoria_controllers = C_C(db, models)
         self.fecha_controllers = F_C(db, models)
         self.marca_controllers = M_C(db, models)
         self.modelo_controllers = MO_C(db, models)
