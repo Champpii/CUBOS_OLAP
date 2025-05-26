@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, DECIMAL, CheckConstraint, UniqueConstraint
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
+import uuid
 
 class Models:
     def __init__(self, db):
@@ -140,6 +142,11 @@ class Models:
             descuento_aplicado = Column(DECIMAL(10, 2), default=0.00)
             margen_ganancia = Column(DECIMAL(10, 2), nullable=False)
 
+            cliente_key = Column(UNIQUEIDENTIFIER, nullable=False, default=uuid.uuid4)
+            tienda_key = Column(UNIQUEIDENTIFIER, nullable=False, default=uuid.uuid4)
+            vendedor_key = Column(UNIQUEIDENTIFIER, nullable=False, default=uuid.uuid4)
+
+
             def to_dict(self):
                 return {
                     "venta_key": self.venta_key,
@@ -148,7 +155,10 @@ class Models:
                     "cantidad_vendida": self.cantidad_vendida,
                     "precio_unitario": str(self.precio_unitario),
                     "descuento_aplicado": str(self.descuento_aplicado),
-                    "margen_ganancia": str(self.margen_ganancia)
+                    "margen_ganancia": str(self.margen_ganancia),
+                    "cliente_key": str(self.cliente_key),
+                    "tienda_key": str(self.tienda_key),
+                    "vendedor_key": str(self.vendedor_key)
                 }
 
         self.FactVentas = FactVentas
